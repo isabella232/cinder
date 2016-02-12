@@ -243,6 +243,9 @@ class VolumeController(wsgi.Controller):
             filters['display_name'] = filters['name']
             del filters['name']
 
+        if 'bootable' in filters:
+            filters['bootable'] = bool(filters['bootable'])
+
         for k, v in filters.items():
             try:
                 filters[k] = ast.literal_eval(v)
